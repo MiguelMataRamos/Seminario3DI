@@ -34,10 +34,10 @@ class Ejercicio2 : AppCompatActivity() {
             animacionGirar(binding.carta2,R.drawable.carta2)
             var ct = object : CountDownTimer(2400, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    binding.carta2.setImageResource(R.drawable.carta2)
+
                 }
                 override fun onFinish() {
-                    animacionGirarReversa(binding.carta1,R.drawable.parte_trasera)                }
+                    animacionGirarReversa(binding.carta2,R.drawable.parte_trasera)                }
             }
 
             ct.start()
@@ -47,10 +47,10 @@ class Ejercicio2 : AppCompatActivity() {
             animacionGirar(binding.carta3,R.drawable.carta3)
             var ct = object : CountDownTimer(2400, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    binding.carta3.setImageResource(R.drawable.carta3)
+
                 }
                 override fun onFinish() {
-                    animacionGirarReversa(binding.carta1,R.drawable.parte_trasera)                }
+                    animacionGirarReversa(binding.carta3,R.drawable.parte_trasera)                }
             }
 
             ct.start()
