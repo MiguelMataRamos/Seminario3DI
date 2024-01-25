@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.ImageView
+import androidx.core.animation.doOnEnd
 import com.example.seminario3di.databinding.ActivityEjercicio2Binding
 
 class Ejercicio2 : AppCompatActivity() {
@@ -15,21 +16,14 @@ class Ejercicio2 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.carta1.setOnClickListener {
-            animacionGirar(binding.carta1)
-            var ct = object : CountDownTimer(3000, 1000) {
+            animacionGirar(binding.carta1,R.drawable.carta1)
+            var ct = object : CountDownTimer(2400, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
-                    when{
-                        millisUntilFinished > 2700 -> binding.carta1.setImageResource(R.drawable.parte_trasera)
-                        millisUntilFinished > 1000 -> binding.carta1.setImageResource(R.drawable.carta1)
-                        else -> {
-                            binding.carta1.setImageResource(R.drawable.parte_trasera)
-                            animacionGirar(binding.carta1)
-                        }
 
-                    }
                 }
+
                 override fun onFinish() {
-                    binding.carta1.setImageResource(R.drawable.parte_trasera)
+                    animacionGirarReversa(binding.carta1,R.drawable.parte_trasera)
                 }
             }
 
@@ -37,28 +31,26 @@ class Ejercicio2 : AppCompatActivity() {
         }
 
         binding.carta2.setOnClickListener {
-            animacionGirar(binding.carta2)
-            var ct = object : CountDownTimer(1000, 1000) {
+            animacionGirar(binding.carta2,R.drawable.carta2)
+            var ct = object : CountDownTimer(2400, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     binding.carta2.setImageResource(R.drawable.carta2)
                 }
                 override fun onFinish() {
-                    binding.carta2.setImageResource(R.drawable.parte_trasera)
-                }
+                    animacionGirarReversa(binding.carta1,R.drawable.parte_trasera)                }
             }
 
             ct.start()
         }
 
         binding.carta3.setOnClickListener {
-            animacionGirar(binding.carta3)
-            var ct = object : CountDownTimer(1000, 1000) {
+            animacionGirar(binding.carta3,R.drawable.carta3)
+            var ct = object : CountDownTimer(2400, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     binding.carta3.setImageResource(R.drawable.carta3)
                 }
                 override fun onFinish() {
-                    binding.carta3.setImageResource(R.drawable.parte_trasera)
-                }
+                    animacionGirarReversa(binding.carta1,R.drawable.parte_trasera)                }
             }
 
             ct.start()
@@ -69,10 +61,30 @@ class Ejercicio2 : AppCompatActivity() {
 
     }
 
-    fun animacionGirar(carta: ImageView){
-        val animacion =  ObjectAnimator.ofFloat(carta, "rotationY", 0f, 180f)
-        animacion.duration = 1000
-        animacion.start()
+    fun animacionGirar(carta: ImageView, draw: Int){
+        val medioGiro = ObjectAnimator.ofFloat(carta, "rotationY", 0f, 90f)
+        medioGiro.duration = 500
+        medioGiro.start()
+
+        medioGiro.doOnEnd {
+            carta.setImageResource(draw) // Aquí es donde cambias la imagen
+            val segundoMedioGiro = ObjectAnimator.ofFloat(carta, "rotationY", 90f, 180f)
+            segundoMedioGiro.duration = 500
+            segundoMedioGiro.start()
+        }
+    }
+
+    fun animacionGirarReversa(carta: ImageView, imagen: Int){
+        val medioGiro = ObjectAnimator.ofFloat(carta, "rotationY", 180f, 90f)
+        medioGiro.duration = 500
+        medioGiro.start()
+
+        medioGiro.doOnEnd {
+            carta.setImageResource(imagen) // Aquí es donde cambias la imagen
+            val segundoMedioGiro = ObjectAnimator.ofFloat(carta, "rotationY", 90f, 0f)
+            segundoMedioGiro.duration = 500
+            segundoMedioGiro.start()
+        }
     }
 
 
