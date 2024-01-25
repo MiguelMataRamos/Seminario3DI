@@ -5,8 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Ejercicio1"
-    android:id="@+id/pantalla">
+    >
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pantalla"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import java.util.Objects
+import com.bumptech.glide.Glide
+
 
 class Ejercicio1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +27,16 @@ class Ejercicio1 : AppCompatActivity() {
 
             override fun onFinish() {
                 texto.text = ""
-                pantalla.background = getDrawable(R.drawable.happy)
+                ponergif()
             }
         }.start()
+    }
+
+    fun ponergif(){
+        var pantalla = findViewById<ImageView>(R.id.pantalla)
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.tugif)
+            .into(pantalla)
     }
 }
