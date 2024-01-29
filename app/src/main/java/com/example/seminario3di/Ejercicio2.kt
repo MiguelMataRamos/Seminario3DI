@@ -14,7 +14,7 @@ class Ejercicio2 : AppCompatActivity() {
     private val semaforo1 = Semaphore(1)
     private val semaforo2 = Semaphore(1)
     private val semaforo3 = Semaphore(1)
-
+    var ct: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEjercicio2Binding.inflate(layoutInflater)
@@ -24,7 +24,7 @@ class Ejercicio2 : AppCompatActivity() {
         binding.carta1.setOnClickListener {
             if (semaforo1.tryAcquire()){
                 animacionGirar(binding.carta1,R.drawable.carta1)
-                var ct = object : CountDownTimer(2400, 1000) {
+                ct = object : CountDownTimer(2400, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
 
                     }
@@ -34,7 +34,7 @@ class Ejercicio2 : AppCompatActivity() {
                         semaforo1.release()
                     }
                 }
-                ct.start()
+                ct!!.start()
 
             }
 
@@ -43,7 +43,7 @@ class Ejercicio2 : AppCompatActivity() {
         binding.carta2.setOnClickListener {
             if (semaforo2.tryAcquire()){
                 animacionGirar(binding.carta2,R.drawable.carta2)
-                var ct = object : CountDownTimer(2400, 1000) {
+                ct = object : CountDownTimer(2400, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
 
                     }
@@ -52,7 +52,7 @@ class Ejercicio2 : AppCompatActivity() {
                         semaforo2.release()}
                 }
 
-                ct.start()
+                ct!!.start()
             }
 
 
@@ -61,7 +61,7 @@ class Ejercicio2 : AppCompatActivity() {
         binding.carta3.setOnClickListener {
             if (semaforo3.tryAcquire()){
                 animacionGirar(binding.carta3,R.drawable.carta3)
-                var ct = object : CountDownTimer(2400, 1000) {
+                ct = object : CountDownTimer(2400, 1000) {
                     override fun onTick(millisUntilFinished: Long) {
 
                     }
@@ -70,7 +70,7 @@ class Ejercicio2 : AppCompatActivity() {
                         semaforo3.release()}
                 }
 
-                ct.start()
+                ct!!.start()
             }
 
         }
@@ -101,6 +101,11 @@ class Ejercicio2 : AppCompatActivity() {
             segundoMedioGiro.duration = 300
             segundoMedioGiro.start()
         }
+    }
+
+    override fun onBackPressed() {
+        ct!!.cancel()
+        super.onBackPressed()
     }
 
 

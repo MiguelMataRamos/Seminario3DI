@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 
 
 class Ejercicio1 : AppCompatActivity() {
+    var ct: CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio1)
@@ -19,7 +20,7 @@ class Ejercicio1 : AppCompatActivity() {
         var pantalla = findViewById<View>(R.id.pantalla)
         var texto = findViewById<TextView>(R.id.contadortxt)
 
-        var ct = object: CountDownTimer(contador.toLong()*1000, 1000) {
+        ct = object: CountDownTimer(contador.toLong()*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 texto.text = contador.toString()
                 contador--
@@ -39,4 +40,12 @@ class Ejercicio1 : AppCompatActivity() {
             .load(R.drawable.tugif)
             .into(pantalla)
     }
+
+    override fun onBackPressed() {
+        ct!!.cancel()
+        super.onBackPressed()
+        finish()
+
+    }
+
 }

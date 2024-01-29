@@ -6,13 +6,14 @@ import android.os.CountDownTimer
 import android.widget.ImageView
 
 class Ejercicio3 : AppCompatActivity() {
+    var ct : CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio3)
 
         var semaforo = findViewById<ImageView>(R.id.semaforo)
 
-        var ct = object : CountDownTimer(5000, 1000) {
+        ct = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 when {
                     millisUntilFinished < 2000L -> {
@@ -32,6 +33,11 @@ class Ejercicio3 : AppCompatActivity() {
                 this.start()
             }
         }
-        ct.start()
+        ct!!.start()
+    }
+
+    override fun onBackPressed() {
+        ct!!.cancel()
+        super.onBackPressed()
     }
 }
