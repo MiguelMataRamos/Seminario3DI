@@ -6,7 +6,7 @@ import android.os.CountDownTimer
 import android.widget.ImageView
 
 class Ejercicio3 : AppCompatActivity() {
-    var ct : CountDownTimer? = null
+    private var ct : CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio3)

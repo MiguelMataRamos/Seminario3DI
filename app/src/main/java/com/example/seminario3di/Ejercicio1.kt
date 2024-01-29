@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 
 class Ejercicio1 : AppCompatActivity() {
-    var ct: CountDownTimer? = null
+    private var ct: CountDownTimer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicio1)

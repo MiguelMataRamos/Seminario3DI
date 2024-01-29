@@ -14,7 +14,7 @@ class Ejercicio2 : AppCompatActivity() {
     private val semaforo1 = Semaphore(1)
     private val semaforo2 = Semaphore(1)
     private val semaforo3 = Semaphore(1)
-    var ct: CountDownTimer? = null
+    private var ct: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEjercicio2Binding.inflate(layoutInflater)
@@ -77,7 +77,7 @@ class Ejercicio2 : AppCompatActivity() {
 
     }
 
-    fun animacionGirar(carta: ImageView, draw: Int){
+    private fun animacionGirar(carta: ImageView, draw: Int){
         val medioGiro = ObjectAnimator.ofFloat(carta, "rotationY", 0f, 90f)
         medioGiro.duration = 400
         medioGiro.start()
