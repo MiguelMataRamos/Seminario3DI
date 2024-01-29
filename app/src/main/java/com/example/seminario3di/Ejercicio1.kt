@@ -42,7 +42,7 @@ class Ejercicio1 : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        ct!!.cancel()
+        ct?.cancel()
         super.onBackPressed()
         finish()
 
